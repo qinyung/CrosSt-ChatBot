@@ -2,11 +2,7 @@
 import json
 import random
 import os
-try:
-    import websocket
-except:
-    os.system('pip3 install websocket-client')
-    import websocket
+import websocket
 ws = websocket.WebSocket()
 ws.connect("wss://ws.crosst.chat:35197/")
 ws.send(json.dumps({'cmd': 'join', 'nick': 'dx_xb', 'password': 'sprinklebot', "clientName": '[Sprinkle Chat](https://pntang.github.io/)', "clientKey": 'Z1ozsN2ZExhhUHt', 'channel': '公共聊天室' }))
