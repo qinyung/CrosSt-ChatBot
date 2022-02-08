@@ -36,3 +36,4 @@ while 1 == 1:
     elif '@dx_xb 出去' in msg and '"trip":"bjvk1K"' in msg:
         ws.close()
         break
+sys.exit(0)
