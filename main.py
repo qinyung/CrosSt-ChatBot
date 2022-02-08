@@ -21,7 +21,7 @@ while 1 == 1:
     level4 = '"level":4'
     level1 = '"level":1'
     if '@dx_xb hi' in msg and level1 not in msg:
-        ws.send(json.dumps({'cmd': 'chat', 'text': 'hi( ﾟ∀。)/'}))
+        ws.send(json.dumps({'cmd': 'chat', 'text': 'hi( ﾟ∀。)/，本机器人由Github Action运行，@我并输入==帮助==来查看帮助内容'}))
     elif '@dx_xb 表情包' in msg and level1 not in msg:
         ws.send(json.dumps({'cmd': 'chat', 'text': emprs}))
     elif '@dx_xb 帮助' in msg and level1 not in msg:
