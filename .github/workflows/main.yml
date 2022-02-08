@@ -1,4 +1,4 @@
-name: 'botscript'
+name: 'main'
 
 on:
   workflow_dispatch:
