@@ -9,7 +9,7 @@ on:
     - cron: '30 5,17 * * *'
 
 jobs:
-  auto_renew:
+  runbot:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout codes'
