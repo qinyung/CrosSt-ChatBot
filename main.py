@@ -9,7 +9,7 @@ except:
     import websocket
 ws = websocket.WebSocket()
 ws.connect("wss://ws.crosst.chat:35197/")
-ws.send(json.dumps({'cmd': 'join', 'nick': 'dx_xb', 'password': 'tc101217', "clientName": '[Sprinkle Chat](https://pntang.github.io/)', "clientKey": 'Z1ozsN2ZExhhUHt', 'channel': '公共聊天室' }))
+ws.send(json.dumps({'cmd': 'join', 'nick': 'dx_xb', 'password': '123456', "clientName": '[Sprinkle Chat](https://pntang.github.io/)', "clientKey": 'Z1ozsN2ZExhhUHt', 'channel': '公共聊天室' }))
 ws.send(json.dumps({'cmd': 'chat', 'text': '(｡･∀･)ﾉﾞ嗨'}))
 ws.recv()
 while 1 == 1:
