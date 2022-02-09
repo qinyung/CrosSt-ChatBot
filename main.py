@@ -1,5 +1,5 @@
 # coding=utf-8
-# python3 index.py
+# python3 main.py
 import sys
 import json
 import random
