@@ -1,7 +1,7 @@
 version: "3"  # docker-compose版本
 services:
   docker-python-demo:  # docker-compose编排名称，一般同微服务名称，注意不要与其他服务重名
-    image: "python:3.7.0b4"  # docker镜像名及版本
+    image: "python:3.6.5"  # docker镜像名及版本
     hostname: docker-python-demo  # docker容器主机名
     container_name: docker-python-demo  # docker容器名
     volumes:  # 挂载目录
