@@ -9,4 +9,5 @@ RUN pip install -r /code/requirements.txt
 RUN pip install websocket-client
 # 指定cmd的工作目录 /code
 WORKDIR /code
-CMD ["python", "/main.py"]
+# 指定工作目录后执行当前目录下的脚本
+CMD ["python", "./main.py"]
