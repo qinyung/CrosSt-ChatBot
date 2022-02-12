@@ -38,7 +38,7 @@ while 1 == 1:
     elif '@dx_xb 重启' in msg and '"trip":"bjvk1K"' in msg:
         ws.close()
         ws.connect("wss://ws.crosst.chat:35197/")
-        ws.send(json.dumps({'cmd': 'join', 'nick': 'dx_xb', 'password': 'tc101217', "clientName": '[Sprinkle Chat](https://pntang.github.io/)', "clientKey": 'Z1ozsN2ZExhhUHt', 'channel': '公共聊天室' }))
+        ws.send(json.dumps({'cmd': 'join', 'nick': 'dx_xb', 'password': '1234567', "clientName": '[Sprinkle Chat](https://pntang.github.io/)', "clientKey": 'Z1ozsN2ZExhhUHt', 'channel': '公共聊天室' }))
         ws.send(json.dumps({'cmd': 'chat', 'text': '我又来啦！'}))
     elif '@dx_xb 出去' in msg and '"trip":"bjvk1K"' in msg:
         ws.close()
