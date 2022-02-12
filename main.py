@@ -28,7 +28,7 @@ while 1 == 1:
     elif '@dx_xb 表情包' in msg and level1 not in msg:
         ws.send(json.dumps({'cmd': 'chat', 'text': emprs}))
     elif '@dx_xb 帮助' in msg and level1 not in msg:
-        ws.send(json.dumps({'cmd': 'chat', 'text': '帮助：输入‘@dx_xb 内容’，现在加入了1.上传 2.github 3.表情包'}))
+        ws.send(json.dumps({'cmd': 'chat', 'text': res.text}))
     elif '@dx_xb 上传' in msg and level1 not in msg:
         ws.send(json.dumps({'cmd': 'chat', 'text': '[点此上传文件](http://sprinkle.is-best.net/crosst/) 或 [使用pikpak](https://sprinklelive.github.io/pikpak) 禁止上传非法内容'}))
     elif '@dx_xb gitHub' in msg and level1 not in msg:
