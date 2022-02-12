@@ -5,6 +5,12 @@ import json
 import random
 import os
 import websocket
+import requests
+
+URL = 'https://spr233.eu.org/dx_xb/help.md'
+res = requests.get(URL)
+res.encoding = 'utf-8'
+
 ws = websocket.WebSocket()
 ws.connect("wss://ws.crosst.chat:35197/")
 ws.send(json.dumps({'cmd': 'join', 'nick': 'dx_xb', 'password': '1234567', "clientName": '[Sprinkle Chat](https://pntang.github.io/)', "clientKey": 'Z1ozsN2ZExhhUHt', 'channel': '公共聊天室' }))
@@ -18,7 +24,7 @@ while 1 == 1:
     level4 = '"level":4'
     level1 = '"level":1'
     if '@dx_xb hi' in msg and level1 not in msg:
-        ws.send(json.dumps({'cmd': 'chat', 'text': 'hi( ﾟ∀。)/，本机器人由Github Action运行，@我并输入==帮助==来查看帮助内容'}))
+        ws.send(json.dumps({'cmd': 'chat', 'text': res.text}))
     elif '@dx_xb 表情包' in msg and level1 not in msg:
         ws.send(json.dumps({'cmd': 'chat', 'text': emprs}))
     elif '@dx_xb 帮助' in msg and level1 not in msg:
