@@ -7,7 +7,7 @@ import os
 import websocket
 import requests
 
-URL = 'https://spr233.eu.org/dx_xb/help.md'
+URL = 'https://sprinkle.eu.org/dx_xb/help.md'
 res = requests.get(URL)
 res.encoding = 'utf-8'
 
