@@ -1,5 +1,4 @@
-# dx-xb
-使用docker部署dx-xb十字街机器人<br>
+# Crosst.Chat Bot
+使用docker部署十字街机器人<br>
 也可以部署于vercel
-### vercel部署命令
-```python3 main.py```<br>
+### vps 部署
