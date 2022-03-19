@@ -11,7 +11,7 @@ services:
       - "8880:8880"
     environment:  # 配置环境变量
       - TZ=Asia/Shanghai  # 设置时区
-    command: bash /docker/run.sh  # 设置启动命令
+    command: bash /docker/docker-run.sh  # 设置启动命令
     network_mode: bridge  # 网络模式：host、bridge、none等，一般bridge
     restart: unless-stopped  # 自动启动：unless-stopped、always等，unless-stopped为非正常停止则自动启动
 #    external_links: # 外链其他服务,此处名称为docker-compose编排名
