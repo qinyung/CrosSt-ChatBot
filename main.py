@@ -9,7 +9,7 @@ import requests
 import platform
 # 配置bot信息
 bot_name = 'SprinkleBot'
-password = 'tc101217'
+password = '123456'
 channel = '公共聊天室'
 # 提取系统信息
 OS_info = platform.platform()
