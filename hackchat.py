@@ -5,7 +5,6 @@ import json
 import random
 import os
 import websocket
-import requests
 import platform
 # 配置bot信息
 bot_name = 'SprinkleBot'
