@@ -67,12 +67,9 @@ while 1 == 1:
     site = random.choice(site_list)
     if 'onlineAdd' in msg:
         if '"nick":"Sprinkle"' in msg and '"trip":"EoZ5HO"' in msg:
-            send('$$\color{red}主\color{orange}人\color{yellow}早\color{green}上\color{blue}好\color{purple}( ﾟ∀。)$$')
+            send('$\color{red}主\color{orange}人\color{yellow}早\color{green}上\color{blue}好\color{purple}( ﾟ∀。)$')
         else:
-            send('偶哈哟，欢迎来到hackchat！(ノﾟ∀ﾟ)ノ')
-            send('输入"帮助"来查看帮助内容')
-    elif 'onlineRemove' in msg:
-        send('拜拜(ノﾟ∀ﾟ)')
+            send('Hey yo!')
     elif '帮助' in msg and bot_name not in msg:
         send(bz)
     elif '涩图' in msg and bot_name not in msg:
