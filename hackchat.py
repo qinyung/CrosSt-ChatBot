@@ -8,7 +8,7 @@ import websocket
 import platform
 # 配置bot信息
 bot_name = 'SprinkleBot'
-password = '123456'
+password = 'mTLX6wg7zaQYX3D9iyupfFgw6ZBOtHkYekLw1CCnI6WXhiogWfTadmdsucmSP6vru8OujHYH0AIKnXd78uxPFyRxHqRvcULzzQANS3irAPV4sMAuRtB53syuWoDzqbUKSDbm2l8yO8dP4u9G9dbmBwDyANcp5DMQLKzCUEEn8KGIzdtksfCItwK4MSQK8LaFEfqBjys4vyebOnDYet7caE5GUsi3OLP5rwMifQGJAauplr8HcL7ffdx0GG4HJDRGVO4o7RXatP2AuuF3kLiC7RIqGWH3gKBLh29UrmQyaaQk03ablKAuLR7FYS2'
 channel = 'your-channel'
 
 bz = '''
@@ -58,7 +58,7 @@ site_list = [
 ws = websocket.WebSocket()
 ws.connect("wss://hack.chat/chat-ws")
 join(bot_name, password, channel)
-send('(｡･∀･)ﾉﾞ嗨')
+send('(｡･∀･)ﾉﾞHi!')
 # 循环判定
 while 1 == 1:
     msg = str(ws.recv())
