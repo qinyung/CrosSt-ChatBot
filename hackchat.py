@@ -62,7 +62,6 @@ send('(｡･∀･)ﾉﾞHi!')
 # 循环判定
 while 1 == 1:
     msg = str(ws.recv())
-    print(msg)
     emprs = random.choice(emprs_list)
     site = random.choice(site_list)
     if 'onlineAdd' in msg:
