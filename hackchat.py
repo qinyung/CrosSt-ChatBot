@@ -8,7 +8,7 @@ import websocket
 import platform
 # 配置bot信息
 bot_name = 'SprinkleBot'
-password = 'mTLX6wg7zaQYX3D9iyupfFgw6ZBOtHkYekLw1CCnI6WXhiogWfTadmdsucmSP6vru8OujHYH0AIKnXd78uxPFyRxHqRvcULzzQANS3irAPV4sMAuRtB53syuWoDzqbUKSDbm2l8yO8dP4u9G9dbmBwDyANcp5DMQLKzCUEEn8KGIzdtksfCItwK4MSQK8LaFEfqBjys4vyebOnDYet7caE5GUsi3OLP5rwMifQGJAauplr8HcL7ffdx0GG4HJDRGVO4o7RXatP2AuuF3kLiC7RIqGWH3gKBLh29UrmQyaaQk03ablKAuLR7FYS2'
+password = '123'
 channel = 'your-channel'
 
 bz = '''
@@ -62,8 +62,7 @@ send('(｡･∀･)ﾉﾞHi!')
 # 循环判定
 while 1 == 1:
     msg = str(ws.recv())
-    emprs = random.choice(emprs_list)
-    site = random.choice(site_list)
+    print(msg)
     if 'onlineAdd' in msg:
         if '"nick":"Sprinkle"' in msg and '"trip":"EoZ5HO"' in msg:
             send('$\color{red}主\color{orange}人\color{yellow}早\color{green}上\color{blue}好\color{purple}( ﾟ∀。)$')
@@ -73,15 +72,8 @@ while 1 == 1:
         send(bz)
     elif '涩图' in msg and bot_name not in msg:
         send('涩图一张，注意身体( ﾟ∀ﾟ) ![waifu](https://pic.sprinkle.workers.dev)')
-    elif '表情包' in msg and bot_name not in msg:
-        send(emprs)
-    elif '趣站' in msg and bot_name not in msg:
-        send(site)
     elif '蛤' in msg and bot_name not in msg:
         send('σ`∀´) ﾟ∀ﾟ)σ')
     elif ' ﾟ∀ﾟ)σ' in msg and bot_name not in msg:
         send('σ`∀´) ﾟ∀ﾟ)σ')
-    elif 'bot出去' in msg and '"trip":"EoZ5HO"' in msg:
-        ws.close()
-        break
 sys.exit(0)
