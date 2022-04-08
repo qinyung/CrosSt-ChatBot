@@ -24,36 +24,7 @@ def send(message):
     ws.send(json.dumps({'cmd': 'chat', 'text': message}))
 
 # 功能列表
-emprs_list = ['( ﾟ∀。)', '(ノﾟ∀ﾟ)ノ', ' ﾟ∀ﾟ)σ', '(*ﾟーﾟ)', '( ﾟ∀ﾟ)', 'σ`∀´) ﾟ∀ﾟ)σ', '(((　ﾟдﾟ)))']
 
-site_list = [
-    'http://adarkroom.doublespeakgames.com/?lang=zh_cn',
-    'https://www.sekai.co/trust/',
-    'https://openarena.live/',
-    'https://bruno-simon.com/',
-    'https://sombras.app/?a=ZZffyi&b=Z33dhc',
-    'https://favicon-pong.glitch.me/',
-    'https://liferestart.syaro.io/view/',
-    'https://win11.blueedge.me/',
-    'https://dinoswords.gg/',
-    'https://saythemoney.github.io/',
-    'http://asciicker.com/',
-    'https://m3o.xyz/',
-    'https://rpgplayground.com/',
-    'https://2020game.io/',
-    'https://emojia.glitch.me/',
-    'http://voxar.io/',
-    'v1.windows93.net',
-    'https://www.pcjs.org/',
-    'https://win95.ajf.me/win95.html',
-    'www.lemonjing.com',
-    'www.shadiao.app',
-    'https://multiuser-sketchpad-colors.glitch.me/',
-    'http://league-of-heroes.herokuapp.com/',
-    'https://appetize.io',
-    'https://cmd.to/',
-    'http://cursors.io/',
-    ]
 # 连接
 ws = websocket.WebSocket()
 ws.connect("wss://hack.chat/chat-ws")
