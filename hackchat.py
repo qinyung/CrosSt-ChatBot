@@ -7,7 +7,7 @@ import os
 import websocket
 import platform
 # 配置bot信息
-bot_name = 'SprinkleBot'
+bot_name = 'Sprink1e'
 password = '123'
 channel = 'your-channel'
 
