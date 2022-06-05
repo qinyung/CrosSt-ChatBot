@@ -35,7 +35,7 @@ def send(message):
 
 
 # 功能列表
-bot_ignore = ['"nick":"do_ob"', '"nick":"bo_od"', '"nick":"Anotia"', '>', bot_name]
+bot_ignore = ['"nick":"do_ob"', '"nick":"bo_od"', '"nick":"Anotia"', bot_name]
 bot_admin = ['"trip":"Admin"']
 
 
@@ -108,10 +108,10 @@ while 1 == 1:
         if admin == True and hello == True:
             send('$\color{red}主\color{orange}人\color{yellow}早\color{green}上\color{blue}好\color{purple}( ﾟ∀。)$')
         elif hello == 'True':
-            send('hi,欢迎来到十字街')
+            send('hi,欢迎来到冬日小屋，输入"帮助"来查看帮助内容!')
     elif '@SprinkleBot' in msg and ignore == False:
-        send('hi，我是SprinkleBot，输入"命令列表"来查看帮助内容!')
-    elif '命令列表' in msg and ignore == False:
+        send('hi，我是SprinkleBot，输入"帮助"来查看帮助内容!')
+    elif '帮助' in msg and ignore == False:
         send(bz)
     elif '二次元图' in msg and  ignore == False:
         send('涩图一张，注意身体( ﾟ∀ﾟ) ![waifu](https://pic.sprinkle.workers.dev)')
