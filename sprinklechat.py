@@ -90,7 +90,7 @@ color_list = ['#4EEE94', '#00BFFF', '#FFFF00', '#FF6A6A', '#fff', '#FF0000', '#F
 
 # 连接
 ws = websocket.WebSocket()
-ws.connect("wss://ws.crosst.chat:35197")
+ws.connect("wss://sprchatport.run.goorm.io")
 join(bot_name, password, channel)
 send('(｡･∀･)ﾉﾞ嗨')
 # 循环判定
