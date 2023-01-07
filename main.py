@@ -8,6 +8,8 @@ import random
 import websocket
 from threading import Thread
 from flask import Flask
+import requests
+import urllib
 
 # ------------------------------配置bot信息------------------------------
 bot_name = 'Snowi'
@@ -69,6 +71,10 @@ def send(message):
 #            ws.conncect("wss://hack.chat/chat-ws")
 #        join(bot_name, password, channel)
 
+def chatapi(message):
+    url = 'http://api.qingyunke.com/api.php?key=free&appid=0&msg={}'.format(urllib.parse.quote(message))
+    html = requests.get(url)
+    return html.json()["content"]
 
 # 功能列表
 bot_ignore = ['"nick":"do_ob"', '"nick":"bo_od"', '>', bot_name]
@@ -173,9 +179,7 @@ def bot_main(server):
             pyi = any(word if word in msg else False for word in py_ignore)
             osi = any(word if word in msg else False for word in os_ignore)
             if ignore == False:
-                if '@' + bot_name in msg:
-                    send('hi，我是Sprinkle的Bot，输入"命令"来查看我的功能!')
-                elif msg == '命令':
+                if msg == '命令':
                     send(bz)
                 elif msg == '二次元图':
                     send('涩图一张，注意身体( ﾟ∀ﾟ) ![waifu](https://pic.sprinkle.workers.dev)')
@@ -256,6 +260,17 @@ def bot_main(server):
                     if r == 5:
                         emprs = random.choice(emprs_list)
                         send(emprs)
+                    elif r == 6:
+                        try:
+                            send(str(chatapi(str(msg))))
+                        except:
+                            pass
+            elif '@' + bot_name in msg:
+                if '>' not in msg:
+                    try:
+                        send(str(chatapi(str(msg[6: ]))))
+                    except:
+                        send('hi，我是Sprinkle的Bot，输入"命令"来查看我的功能!')
             else:
                 pass
         elif cmd == 'onlineAdd':
@@ -267,6 +282,7 @@ def bot_main(server):
 while 1 == 1:
     bot_main('crosst')
 #    time.sleep(5)
+
 #crosst = Thread(target=bot_main('crosst'))
 #crosst.start()
 # hc = Thread(target=bot_main('hc'))
