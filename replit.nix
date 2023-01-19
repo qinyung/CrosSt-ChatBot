@@ -1,6 +1,7 @@
 { pkgs }: {
   deps = [
     pkgs.python38Full
+    pkgs.wget
   ];
   env = {
     PYTHON_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
