@@ -20,6 +20,11 @@ cchannel = '公共聊天室'
 
 # ------------------------------配置bot信息------------------------------
 
+# 新的页面，加入了查看日志的功能，和下方的flask网页选一个即可
+# def main():
+#    os.system('cd log')
+#    os.system('python3 -m http.server 8080')
+
 app = Flask(__name__)
 
 
@@ -72,14 +77,20 @@ def send(message):
 #        join(bot_name, password, channel)
 
 def chatapi(message):
+    apiban = ['这里自行加入屏蔽词']
     url = 'http://api.qingyunke.com/api.php?key=free&appid=0&msg={}'.format(urllib.parse.quote(message))
     html = requests.get(url)
-    return html.json()["content"]
+    getmsg = html.json()["content"]
+    apignore = any(word if word in getmsg else False for word in apiban)
+    if apignore == False:
+        return getmsg
+    else:
+        return '我触发屏蔽词了，Sprinkle不让我说这句话(　ﾟдﾟ)'
 
 # 功能列表
-bot_ignore = ['"nick":"do_ob"', '"nick":"bo_od"', '>', bot_name]
-bot_admin = ['gDhuU3', 'sSv1j2', 'eYFDHl']
-bot_trust = ['gDhuU3', 'sSv1j2', 'eYFDHl']
+bot_ignore = ['"nick":"do_ob"', '"nick":"bo_od"', '>', '收到私聊', bot_name]
+bot_admin = ['gDhuU3', 'sSv1j2']
+bot_trust = ['gDhuU3', 'sSv1j2']
 py_ignore = ['import', 'while', 'for', 'from', 'input']
 os_ignore = ['del', 'rm', 'python', '/', 'apt']
 
@@ -143,12 +154,12 @@ def bot_main(server):
         join(bot_name, password, channel, server)
     if server == 'hc':
         send('/color FFC1C1')
-    send('(｡･∀･)ﾉﾞ嗨')
+        send('(｡･∀･)ﾉﾞ嗨')
     # 循环判定
     while 1 == 1:
         try:
             msg_json = json.loads(ws.recv())
-            # print(str(msg_json))
+            print(str(msg_json))
             if "cmd" in msg_json:
                 cmd = msg_json["cmd"]
                 if cmd == "chat":
@@ -160,13 +171,13 @@ def bot_main(server):
                         trip = 'none'
                     userid = msg_json['userid']
                 elif cmd == 'onlineAdd':
-                    userhash = msg_json['hash']
-                    name = msg_json['nick']
+                    # userhash = msg_json['hash']
+                    # name = msg_json['nick']
                     try:
                         trip = msg_json['trip']
                     except:
                         trip = 'none'
-                    userid = msg_json['userid']
+                    # userid = msg_json['userid']
         except:
             pass
         if cmd == 'warn':
@@ -196,6 +207,8 @@ def bot_main(server):
                     send('σ`∀´) ﾟ∀ﾟ)σ')
                 elif msg == '贴贴':
                     send('呕——(　ﾟдﾟ)')
+                elif msg == '贪吃蛇':
+                    ws.send(json.dumps({'cmd': 'iframe', 'text': '<iframe src="//snakebot.pages.dev/">贪吃蛇</iframe>'}))
                 elif msg == '传文件':
                     send('使用 [十字街分享站](http://sprinkle.is-best.net/crosst) 密码:crosst.chat')
                 elif 'os ' in msg and trust == True:
@@ -250,8 +263,8 @@ def bot_main(server):
                         if 'bot停止休眠' in msg1 and admin == True:
                             send('睡醒咯')
                             break
-                        elif '@SprinkleBot' in msg1 and ignore == False:
-                            send('SprinkleBot在睡觉呢')
+                        elif '@' + bot_name in msg1 and ignore == False:
+                            send('我睡了:0')
                 elif 'bot出去' in msg and admin == True:
                     ws.close()
                     sys.exit(0)
@@ -262,13 +275,13 @@ def bot_main(server):
                         send(emprs)
                     elif r == 6:
                         try:
-                            send(str(chatapi(str(msg))))
+                            send(str(chatapi(str(msg[7: ]))))
                         except:
                             pass
             elif '@' + bot_name in msg:
                 if '>' not in msg:
                     try:
-                        send(str(chatapi(str(msg[6: ]))))
+                        send(str(chatapi(str(msg[7: ]))))
                     except:
                         send('hi，我是Sprinkle的Bot，输入"命令"来查看我的功能!')
             else:
