@@ -5,7 +5,7 @@
 bash install.sh
 ```
 ### Railway/Heroku容器部署
-fork https://github.com/pntang/dx_xb-Heroku 或本仓库的repo，然后连接至你的repo
+fork 本仓库的repo，然后连接至你的repo
 ### Docker部署
 使用 docker-compose.yml
 ### okteto部署
