@@ -1,9 +1,8 @@
-# Hack.Chat Bot
-使用docker部署聊天机器人<br>
-也可以部署于vercel
+# CrosSt.Chat Bot
+简洁轻小的十字街聊天机器人<br>
 ### vps 部署
 ```
-bash vps-install.sh
+bash install.sh
 ```
 ### Railway/Heroku容器部署
 fork https://github.com/pntang/dx_xb-Heroku 或本仓库的repo，然后连接至你的repo
