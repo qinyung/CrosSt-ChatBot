@@ -3,7 +3,7 @@
 import os
 import sys
 import json
-import time
+from time import sleep
 import random
 import websocket
 from threading import Thread
@@ -25,16 +25,8 @@ cchannel = '公共聊天室'
 #    os.system('cd log')
 #    os.system('python3 -m http.server 8080')
 
-app = Flask(__name__)
 
 
-@app.route("/")
-def main():
-    return "The SprinkleBot is running..."
-def run():
-    app.run(host='0.0.0.0', port=8080)
-t = Thread(target=run)
-t.start()
 
 
 # 加入和发送函数
@@ -51,8 +43,8 @@ def join(bot_name, password, channel, server):
                 'cmd': 'join',
                 'nick': bot_name,
                 'password': password,
-                "clientName": '[Sprinkle Chat](https://pntang.github.io/)',
-                "clientKey": 'Z1ozsN2ZExhhUHt',
+                "clientName": '[🎄识字街客户端](https://client.urcraft.repl.co)',
+                # "clientKey": 'Z1ozsN2ZExhhUHt',
                 'channel': channel,
             }))
     else:
@@ -77,65 +69,41 @@ def send(message):
 #        join(bot_name, password, channel)
 
 def chatapi(message):
-    apiban = ['这里自行加入屏蔽词']
+    apiban = ['脱衣', '射', '操', '爽', '口交', '乱发网址', '正在维护', '未获取到相关信息', '大爷', '知道切糕不，一刀上海买房 两刀杨幂上床 三刀盖茨认娘 四刀铁定入常', '陪睡']
     url = 'http://api.qingyunke.com/api.php?key=free&appid=0&msg={}'.format(urllib.parse.quote(message))
     html = requests.get(url)
-    getmsg = html.json()["content"]
+    getmsg2 = html.json()["content"].replace('你', '大小姐')
+    getmsg1 = getmsg2.replace('菲菲', '雪羽桑')
+    r = random.randint(0, 5)
+    if r == 3:
+        getmsg = str('呐~⭐' + getmsg1 + '')
+    else:
+        getmsg = getmsg1
     apignore = any(word if word in getmsg else False for word in apiban)
     if apignore == False:
         return getmsg
     else:
-        return '我触发屏蔽词了，Sprinkle不让我说这句话(　ﾟдﾟ)'
+        return '(鞠躬)抱歉大小姐，雪羽酱没有听清'
 
 # 功能列表
-bot_ignore = ['"nick":"do_ob"', '"nick":"bo_od"', '>', '收到私聊', bot_name]
-bot_admin = ['gDhuU3', 'sSv1j2']
-bot_trust = ['gDhuU3', 'sSv1j2']
+bot_ignore = ['"nick":"do_ob"', '"nick":"bo_od"', '>', '笑话', '收到私聊']
+bot_admin = ['gDhuU3', 'sSv1j2', 'vnmh8c']
+bot_trust = ['gDhuU3', 'sSv1j2', 'vnmh8c']
 py_ignore = ['import', 'while', 'for', 'from', 'input']
 os_ignore = ['del', 'rm', 'python', '/', 'apt']
 
 bz = '''
-| 指令 | 描述 | 指令 | 描述 |
+| 功能 | 描述 | 功能 | 描述 |
 | :---: | :---: | :---: | :---: |
-| 表情包 | 发送一个表情包 | 蛤 | 嘲笑你(doge) |
-| 趣站 | 发送一个好玩的网站 | 贴贴 | 你好恶心(吐)🤮 |
-| 二次元图 | 发送涩涩的图片 | 传文件 | 使用分享站点传文件 |
-|os| 运行Linux命令 |py| 运行python代码 |
-| 手气 | 摇一个随机数 | haha | #@最高机密#@ |
+| 反馈 | 反馈问题(beta) | 蛤 | 嘲笑你! |
+| 睡觉 | 雪羽酱の晚安 | 早安问候 | 打招呼(beta) |
+| 表情包 | 发送一个表情包 | 贴贴 | 和雪羽酱贴贴 |
+__『Tips』__ 输入 “@Snowi 聊天内容” 可以和雪羽酱聊天喔⭐~
 '''
 
 emprs_list = [
     '( ﾟ∀。)', '(ノﾟ∀ﾟ)ノ', ' ﾟ∀ﾟ)σ', '(*ﾟーﾟ)', '( ﾟ∀ﾟ)', 'σ`∀´) ﾟ∀ﾟ)σ',
     '(　ﾟдﾟ)'
-]
-
-site_list = [
-    'http://adarkroom.doublespeakgames.com/?lang=zh_cn',
-    'https://www.sekai.co/trust/',
-    'https://openarena.live/',
-    'https://bruno-simon.com/',
-    'https://sombras.app/?a=ZZffyi&b=Z33dhc',
-    'https://favicon-pong.glitch.me/',
-    'https://liferestart.syaro.io/view/',
-    'https://win11.blueedge.me/',
-    'https://dinoswords.gg/',
-    'https://saythemoney.github.io/',
-    'http://asciicker.com/',
-    'https://m3o.xyz/',
-    'https://rpgplayground.com/',
-    'https://2020game.io/',
-    'https://emojia.glitch.me/',
-    'http://voxar.io/',
-    'v1.windows93.net',
-    'https://www.pcjs.org/',
-    'https://win95.ajf.me/win95.html',
-    'www.lemonjing.com',
-    'www.shadiao.app',
-    'https://multiuser-sketchpad-colors.glitch.me/',
-    'http://league-of-heroes.herokuapp.com/',
-    'https://appetize.io',
-    'https://cmd.to/',
-    'http://cursors.io/',
 ]
 
 # 连接
@@ -155,6 +123,21 @@ def bot_main(server):
     if server == 'hc':
         send('/color FFC1C1')
         send('(｡･∀･)ﾉﾞ嗨')
+
+
+
+    # 监控网页
+    app = Flask(__name__)
+    @app.route("/")
+    def main():
+        return "The SprinkleBot is running..."
+    def run():
+        app.run(host='0.0.0.0', port=8080)
+    t = Thread(target=run)
+    t.start()
+
+
+
     # 循环判定
     while 1 == 1:
         try:
@@ -190,27 +173,22 @@ def bot_main(server):
             pyi = any(word if word in msg else False for word in py_ignore)
             osi = any(word if word in msg else False for word in os_ignore)
             if ignore == False:
-                if msg == '命令':
+                if msg == '功能':
                     send(bz)
-                elif msg == '二次元图':
-                    send('涩图一张，注意身体( ﾟ∀ﾟ) ![waifu](https://pic.sprinkle.workers.dev)')
                 elif msg == '表情包':
                     emprs = random.choice(emprs_list)
                     send(emprs)
-                elif msg == '趣站':
-                    site = random.choice(site_list)
-                    send(site)
                 elif msg == '手气' and roll == True:
                     r = random.randint(0, 1001)
                     send('摇出了' + str(r) + '')
                 elif '蛤' in msg:
                     send('σ`∀´) ﾟ∀ﾟ)σ')
                 elif msg == '贴贴':
-                    send('呕——(　ﾟдﾟ)')
-                elif msg == '贪吃蛇':
-                    ws.send(json.dumps({'cmd': 'iframe', 'text': '<iframe src="//snakebot.pages.dev/">贪吃蛇</iframe>'}))
-                elif msg == '传文件':
-                    send('使用 [十字街分享站](http://sprinkle.is-best.net/crosst) 密码:crosst.chat')
+                    send('『啊依系带哟』，大小姐什么时候和花見酱贴贴都可以哦')
+                elif msg == '睡觉':
+                    send('晚安哦，需要雪羽酱讲故事入眠可以找我哦')
+                elif msg == '反馈':
+                    send('抱歉给大小姐造成困扰，这里是[『雪羽酱の邮箱⭐』](mailto:mail@snowi.eu.org)')
                 elif 'os ' in msg and trust == True:
                     command = msg[3: ]
                     if osi == False and trust == True:
@@ -250,7 +228,19 @@ def bot_main(server):
                     elif roll == False:
                         send('$ROLL设为True')
                         roll = True
-                elif 'bot休眠' in msg and admin == True:
+                # elif '\ban ' in msg and admin == True:
+                    # baninfo = msg[5: ]
+                    # send('/ban ' + baninfo + '')
+                # elif '\banip ' in msg and admin == True:
+                    # baninfo = msg[7: ]
+                    # send('/banip ' + baninfo + '')
+                # elif r'\unban ' in msg and admin == True:
+                    # baninfo = msg[7: ]
+                    # send('/unban ' + baninfo + '')
+                # elif r'\unbanip ' in msg and admin == True:
+                    # baninfo = msg[9: ]
+                    # send('/unbanip ' + baninfo + '')
+                elif 'bot休眠' == msg and admin == True:
                     send('晚安')
                     while 1 == 1:
                         try:
@@ -265,7 +255,7 @@ def bot_main(server):
                             break
                         elif '@' + bot_name in msg1 and ignore == False:
                             send('我睡了:0')
-                elif 'bot出去' in msg and admin == True:
+                elif 'bot出去' == msg and admin == True:
                     ws.close()
                     sys.exit(0)
                 else:
@@ -275,27 +265,29 @@ def bot_main(server):
                         send(emprs)
                     elif r == 6:
                         try:
-                            send(str(chatapi(str(msg[7: ]))))
+                            send(chatapi(str(msg)))
                         except:
                             pass
             elif '@' + bot_name in msg:
-                if '>' not in msg:
+                if '>' not in msg and '@' + bot_name != msg:
                     try:
-                        send(str(chatapi(str(msg[7: ]))))
+                        send(chatapi(str(msg[7: ])))
                     except:
-                        send('hi，我是Sprinkle的Bot，输入"命令"来查看我的功能!')
+                        send('(鞠躬)抱歉大小姐，雪羽酱没有听清')
+                elif '>' not in msg and '@' + bot_name == msg:
+                    send('啾，大小姐早安~唤醒我啦！我是QingYu的bot--Snowi！全名叫『花見雪羽』，偶哈哟秋梨膏！输入"功能"查看帮助内容')
             else:
                 pass
         elif cmd == 'onlineAdd':
             admin = any(word if word in trip else False for word in bot_admin)
-            if admin == True and hello == True:
-                send('$\color{red}主\color{orange}人\color{yellow}早\color{green}上\color{blue}好\color{purple}( ﾟ∀。)$')
+            if admin == True:
+                send('呐，大小姐早安~『お早く○○ですね』今天也辛苦了!')
             elif admin == False and hello == True:
                 send('hi :D')
-while 1 == 1:
-    bot_main('crosst')
-#    time.sleep(5)
-
+# while 1 == 1:
+#    bot_main('crosst')
+#    sleep(10)
+#    print('restart')
 #crosst = Thread(target=bot_main('crosst'))
 #crosst.start()
 # hc = Thread(target=bot_main('hc'))
